@@ -30,7 +30,7 @@ Edit: <your game folder>/data/config.cfg
  
 # How To use:
  - use generic DLL Injector(cheat engine whatever..) and load DLL "Debug/RexuizHack.dll"
- - start Game
+ - start Game rexuiz-sdl-i686.exe (only i686 supported)
  - Inject
  - have fun
  

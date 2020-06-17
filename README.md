@@ -2,7 +2,7 @@
 
 internal game Hack for Rexuiz mod (nexuiz). 
 
-[logo]: https://github.com/pieewiee/RexuizHack/blob/master/hack.png
+![alt text](https://github.com/pieewiee/RexuizHack/blob/master/hack.png)
 
 
 # Features:

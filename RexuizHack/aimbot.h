@@ -6,6 +6,11 @@
 
 
 
+const float PLAYER_HEIGHTaimbot = 40.0f;
+
+const float EYE_HEIGHTaimbot = 34.979f;
+
+
 vec3 CalcAngle(vec3 src, vec3 dst);
 
 

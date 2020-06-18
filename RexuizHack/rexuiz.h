@@ -116,4 +116,3 @@ class ClientConnect
 public:
 	int32_t connected; //0x001C
 }; //Size: 0x0040x0004
-

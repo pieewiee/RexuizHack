@@ -21,6 +21,8 @@ vec3 AimbotSubtract(vec3 src, vec3 dst)
     return diff;
 }
 
+
+
 float AimbotMagnitude(vec3 vec)
 {
     return sqrtf(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
@@ -44,18 +46,11 @@ vec3 CalcAngle(vec3 Source, vec3 Direction)
     float Magnitude = sqrt(Angle.x * Angle.x + Angle.y * Angle.y + Angle.z * Angle.z);
 
     NewAngle.x = (float)atan2(Angle.y, Angle.x) * 180.0 / PI;
-    NewAngle.y = -atan2(Angle.z, Magnitude) * 180.0 / PI;
+    //NewAngle.y = -atan2(Angle.z, Magnitude) * 180.0 / PI;
+    NewAngle.y = (asin((Direction.z - Source.z) / AimbotDistance(Source, Direction))) * -180.0f / PI;
     NewAngle.z = 0;
 
     return NewAngle;
-}
-vec3 ClampAngle(vec3& angle) {
-    if (angle.x > 89.0f) angle.x -= 180.0f;
-    if (angle.x < -89.0f) angle.x += 180.0f;
-
-    while (angle.y > 180) angle.y -= 360.f;
-    while (angle.y < -180) angle.y += 360.f;
-    return angle;
 }
 
 
@@ -80,7 +75,11 @@ vec3 Aimbot::GetBestTarget()
 
             if (PlayerDistance > 100)
             {
-                vec3 angleTo = CalcAngle(localPlayer->LocalPlayer->position, playerPos->Position);         
+
+                vec3 center = localPlayer->LocalPlayer->position;
+                center.z = center.z - EYE_HEIGHTaimbot + PLAYER_HEIGHTaimbot / 2;
+
+                vec3 angleTo = CalcAngle(center, playerPos->Position);
                 vec3 swappedangle = { viewangle->viewangle.y, viewangle->viewangle.x, viewangle->viewangle.z };
 
                 newDistance = AimbotDistance(swappedangle, angleTo);

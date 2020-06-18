@@ -12,6 +12,20 @@ bool ESP::IsValidEnt(PlayerPos* PlayerPos)
 }
 
 
+const unsigned char* ESP::Color(Player* player)
+{
+	if (player->status == myteam)
+	{
+		return rgb::green;
+	}
+	else 
+	{
+		return rgb::red;
+	}
+
+}
+
+
 void  ESP::DrawESPBox(Player* player, PlayerPos* playerPos, vec3 screen, GL::Font& font)
 {
 	const GLubyte* color = nullptr;
@@ -28,12 +42,12 @@ void  ESP::DrawESPBox(Player* player, PlayerPos* playerPos, vec3 screen, GL::Fon
 		float width = scale * 2;
 		float height = scale * PLAYER_ASPECT_RATIO * 2;
 
-		GL::DrawOutline(x, y, width, height, 2.0f, rgb::red);
+		GL::DrawOutline(x, y, width, height, 2.0f, Color(player));
 
 
 		float textX = font.centerText(x, width, strlen(player->name) * ESP_FONT_WIDTH);
 		float textY = y - ESP_FONT_HEIGHT / 2;
-		font.Print(textX, textY, rgb::red, "%s", player->name);
+		font.Print(textX, textY, Color(player), "%s", player->name);
 
 		vec3 angle = CalcAngle(localPlayer->LocalPlayer->position, playerPos->Position);
 
@@ -43,10 +57,26 @@ void  ESP::DrawESPBox(Player* player, PlayerPos* playerPos, vec3 screen, GL::Fon
 
 }
 
+void ESP::Team()
+{
+	for (int i = 0; i < (numOfPlayers); i++)
+	{
+
+		Player* player = players->Player[i];
+		PlayerPos* playerPos = playersPos->PlayerPos[i];
+		
+		if (localPlayer->LocalPlayer->position.x == playerPos->Position.x && localPlayer->LocalPlayer->position.y == playerPos->Position.y)
+		{
+			myteam = player->status;
+		}
+	}
+}
+
 void ESP::Draw(GL::Font& font)
 {
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
+	Team();
 
 	for (int i = 0; i < (numOfPlayers); i++)
 	{

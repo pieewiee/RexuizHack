@@ -15,12 +15,15 @@ const float PLAYER_ASPECT_RATIO = PLAYER_HEIGHT / PLAYER_WIDTH;
 const int ESP_FONT_HEIGHT = 15;
 const int ESP_FONT_WIDTH = 9;
 
+
+
 class ESP
 {
 public:
 
-	int numOfPlayers = 64;
+	int numOfPlayers = 32;
 
+	int myteam = 0;
 
 
 	LocalPlayerClass* localPlayer = (LocalPlayerClass*)(moduleBase() + 0x3249C);
@@ -41,6 +44,8 @@ public:
 	//bool IsEnemy(ent* e);
 
 	bool IsValidEnt(PlayerPos* PlayerPos);
+	const unsigned char* Color(Player* player);
 	void DrawESPBox(Player* players, PlayerPos* playersPos,  vec3 screen, GL::Font& font);
 	void Draw(GL::Font& font);
+	void Team();
 };

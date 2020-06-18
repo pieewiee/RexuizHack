@@ -12,7 +12,7 @@ void GL::SetupOrtho()
 	glViewport(0, 0, viewport[2], viewport[3]);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0, viewport[2], viewport[3], 0, -1, 1);
+	glOrtho(0, viewport[2], viewport[3], 0, -100, 100);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glDisable(GL_DEPTH_TEST);

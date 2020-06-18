@@ -17,8 +17,8 @@ vec3 CalcAngle(vec3 src, vec3 dst);
 class Aimbot
 {
 public:
-	int numOfPlayers = 64;
-
+	int numOfPlayers = 32;
+	int myteam = 0;
 
 	LocalPlayerClass* localPlayer = (LocalPlayerClass*)(moduleBase() + 0x3249C);
 
@@ -31,5 +31,5 @@ public:
 	bool IsValidEnt(PlayerPos* PlayerPos);
 	vec3 GetBestTarget();
 	void aim();
-
+	void Team();
 };

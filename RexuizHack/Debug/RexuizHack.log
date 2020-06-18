@@ -1,3 +1,2 @@
-﻿  aimbot.cpp
-C:\Users\tilln\source\repos\RexuizHack\RexuizHack\aimbot.cpp(48,57): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+﻿  glDraw.cpp
   RexuizHack.vcxproj -> C:\Users\tilln\source\repos\RexuizHack\Debug\RexuizHack.dll

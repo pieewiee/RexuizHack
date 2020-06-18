@@ -53,6 +53,21 @@ vec3 CalcAngle(vec3 Source, vec3 Direction)
     return NewAngle;
 }
 
+void Aimbot::Team()
+{
+    for (int i = 0; i < (numOfPlayers); i++)
+    {
+
+        Player* player = players->Player[i];
+        PlayerPos* playerPos = playersPos->PlayerPos[i];
+
+        if (localPlayer->LocalPlayer->position.x == playerPos->Position.x && localPlayer->LocalPlayer->position.y == playerPos->Position.y)
+        {
+            myteam = player->status;
+        }
+    }
+}
+
 
 vec3 Aimbot::GetBestTarget()
 {
@@ -68,7 +83,7 @@ vec3 Aimbot::GetBestTarget()
         Player* player = players->Player[i];
         PlayerPos* playerPos = playersPos->PlayerPos[i];
 
-        if (IsValidEnt(playerPos))
+        if (IsValidEnt(playerPos) && player->status != myteam)
         {
 
             float PlayerDistance = localPlayer->LocalPlayer->position.Distance(playerPos->Position);
@@ -108,7 +123,12 @@ vec3 Aimbot::GetBestTarget()
 
 void Aimbot::aim()
 {
+    Team();
 
+    if (myteam == 0)
+    {
+        myteam = 10;
+    }
     vec3 target = GetBestTarget();
 
         if (target.z != 1)
